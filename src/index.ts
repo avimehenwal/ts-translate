@@ -3,6 +3,7 @@ import { items } from './data';
 dotenv.config();
 import { IItem } from './data';
 import { v2 } from '@google-cloud/translate';
+import { getMaxListeners } from 'process';
 const { Translate } = v2;
 
 type ITargetLanguage = `de` | `fr`;
@@ -36,11 +37,15 @@ async function translateItem(item: IItem, targetLang: ITargetLanguage): Promise<
   return item;
 }
 
-console.log(`INFO: translating [${items.length}] items .....`);
-(async () => {
-  for (let item of items) {
-    console.log(`translating --------------------- ${item.title}`);
-    const translatedItem = await translateItem(item, TARGET_LANG);
-    console.dir(translatedItem);
-  }
-})();
+function main() {
+  console.log(`INFO: translating [${items.length}] items .....`);
+  var promises = items.map(async function (item) {
+    return await translateItem(item, TARGET_LANG);
+  });
+  return Promise.all(promises);
+}
+
+main().then((items) => {
+  console.dir(items);
+  console.log(`INFO:: all [${items.length}] translation completed ✅`);
+});
