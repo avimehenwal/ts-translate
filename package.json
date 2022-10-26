@@ -14,7 +14,7 @@
     "ts",
     "translate"
   ],
-  "author": "",
+  "author": "avimehenwal",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.11.5",
@@ -25,5 +25,10 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 120,
+    "tab-width": 4
   }
 }
