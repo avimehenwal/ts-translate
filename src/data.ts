@@ -1,4 +1,14 @@
-export const items = [
+export interface IItem {
+  title: string;
+  description: string | null;
+  price: number;
+  location: {
+    city: string;
+    country: string;
+  };
+}
+
+export const items: IItem[] = [
   {
     title: 'This is a title',
     description: 'This is a description',
