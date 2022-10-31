@@ -42,6 +42,18 @@ npm test
 6. [x] CSV generator from exiting data [22df7](https://github.com/avimehenwal/ts-translate/commit/22df712e925b4deae328a336e792ee52d48a9ba6)
 7. [ ] debugging features and low-level code-introspection
 
+### Project Analysis
+
+**(1087.6 files/s, 23928.1 lines/s)**
+
+Language|files|blank|comment|code
+:-------|-------:|-------:|-------:|-------:
+TypeScript|11|28|13|215
+CSV|1|0|0|8
+--------|--------|--------|--------|--------
+SUM:|12|28|13|223
+
+
 ### @ Reach Me @
 
 > available for new opportunity ...
