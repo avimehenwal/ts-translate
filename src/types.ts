@@ -1,7 +1,7 @@
 export type ITargetLanguage = `de` | `fr`;
 export type ISourceLanguage = `en`;
 
-export interface IErrorFormat<T> {
+export interface IErrorFormat<T = string> {
   code: number;
   msg: string;
   original: T;
