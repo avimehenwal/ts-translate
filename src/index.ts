@@ -1,51 +1,36 @@
-import * as dotenv from 'dotenv';
-import { items } from './data';
-dotenv.config();
-import { IItem } from './data';
-import { v2 } from '@google-cloud/translate';
-import { getMaxListeners } from 'process';
-const { Translate } = v2;
+import { IItem, items } from './data';
+import { ITargetLanguage, translateService } from './service/translate';
 
-type ITargetLanguage = `de` | `fr`;
-type ISourceLanguage = `en`;
-
-const TARGET_LANG: ITargetLanguage = `de`;
-const DELAY: number = 400;
-
-function translateService(str: string, target: ITargetLanguage): Promise<string> {
-  // several tranlsting straetgies could be used here. Eg: google translate service
-  // for my purposed I am mocked it
-
-  // const projectId = process.env.GOOGLE_TRANSLATE_API_KEY ?? 'undefined';
-  // const translate = new Translate({ keyFilename: './src/keyFile.json' });
-
-  // (async () => {
-  //   let [translations] = await translate.translate(text, TARGET_LANG);
-  //   console.dir(translations, { depth: null });
-  // })();
-
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(`mocked translation - ${(Math.random() + 1).toString(36)}`);
-    }, DELAY);
-  });
+interface IItemResult {
+  title: string;
+  description: string | null;
 }
 
-async function translateItem(item: IItem, targetLang: ITargetLanguage): Promise<IItem> {
-  item.title = await translateService(item.title, TARGET_LANG);
-  item.description = item.description && (await translateService(item.description, TARGET_LANG));
-  return item;
+export async function translateItem(item: IItem, targetLang?: ITargetLanguage): Promise<IItemResult> {
+  return {
+    title: await translateService(item.title),
+    description: item.description && (await translateService(item.description))
+  };
 }
 
-function main() {
-  console.log(`INFO: translating [${items.length}] items .....`);
-  var promises = items.map(async function (item) {
-    return await translateItem(item, TARGET_LANG);
-  });
-  return Promise.all(promises);
-}
+let processedQueue = [];
+let errorQueue = [];
 
-main().then((items) => {
-  console.dir(items);
-  console.log(`INFO:: all [${items.length}] translation completed ✅`);
-});
+(async () => {
+  console.log(`INFO:: 🚧 translating total [${items.length}] items .....`);
+  for (let item of items) {
+    try {
+      processedQueue.push(await translateItem(item))
+    } catch (e) {
+      errorQueue.push(e)
+    }
+  }
+  const successResult = await Promise.all(processedQueue);
+  // console.dir(successResult)
+
+  const failureResults = await Promise.all(errorQueue);
+
+  console.log(`INFO:: ✅ [${successResult.length}] translation completed`)
+  console.log(`INFO:: ❌ [${failureResults.length}] translation failed, error report ...`)
+  console.dir(failureResults)
+})();

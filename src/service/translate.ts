@@ -1,9 +1,15 @@
-type ITargetLanguage = `de` | `fr`;
+import { v2 } from '@google-cloud/translate';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+
+export type ITargetLanguage = `de` | `fr`;
 type ISourceLanguage = `en`;
 
 interface IErrorFormat {
   code: number;
   msg: string;
+  original: string
 }
 
 const TARGET_LANG: ITargetLanguage = `de`;
@@ -30,7 +36,8 @@ export function translateService(str: string, target: ITargetLanguage = TARGET_L
     if (str.includes("error")) {
       const errorMsg: IErrorFormat = {
         code: 500,
-        msg: `some custom error message`
+        msg: `some custom error message`,
+        original: str,
       }
       rejects(errorMsg)
     }

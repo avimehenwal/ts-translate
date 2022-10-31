@@ -64,4 +64,14 @@ export const items: IItem[] = [
       country: 'Lithuania',
     },
   },
+  // error condition [6]
+  {
+    title: 'title with some error',
+    description: `hello from other side`,
+    price: 120000,
+    location: {
+      city: 'Klaipeda',
+      country: 'Lithuania',
+    },
+  },
 ];
