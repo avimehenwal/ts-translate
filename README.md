@@ -16,12 +16,21 @@ npm install
 npm start
 ```
 
-![demo2](./docs/demo2.png)
+![demo3](./docs/demo3.png)
+
+### Tests
+
+```
+npm test
+```
+
+![test](./docs/demo-test.png)
 
 ### design decision
 
 - script created a Promise for each translation, which could be executed asynchronousely in parallel
 - Once all translation are resolved the data-object could be used to write/update a file or database entry
+- all errors are handeled and a summary of all actions is printed in the end
 
 ### @ Reach Me @
 
