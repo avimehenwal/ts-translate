@@ -1,12 +1,4 @@
-export interface IItem {
-    title: string;
-    description: string | null;
-    price: number;
-    location: {
-        city: string;
-        country: string;
-    };
-}
+import { IItem } from './types';
 
 export const items: IItem[] = [
     {

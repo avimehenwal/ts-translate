@@ -1,18 +1,8 @@
 import { v2 } from '@google-cloud/translate';
 import * as dotenv from 'dotenv';
+import { TARGET_LANG, DELAY } from '../constants';
+import { ITargetLanguage, IErrorFormat } from '../types';
 dotenv.config();
-
-export type ITargetLanguage = `de` | `fr`;
-type ISourceLanguage = `en`;
-
-export interface IErrorFormat {
-    code: number;
-    msg: string;
-    original: string;
-}
-
-const TARGET_LANG: ITargetLanguage = `de`;
-const DELAY = 400;
 
 export function translateService(str: string, target: ITargetLanguage = TARGET_LANG): Promise<string> {
     // several tranlsting straetgies could be used here. Eg: google translate service
@@ -33,7 +23,7 @@ export function translateService(str: string, target: ITargetLanguage = TARGET_L
 
         // simulate a error path
         if (str.includes('error')) {
-            const errorMsg: IErrorFormat = {
+            const errorMsg: IErrorFormat<string> = {
                 code: 500,
                 msg: `some custom error message`,
                 original: str,
