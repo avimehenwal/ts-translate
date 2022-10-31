@@ -34,11 +34,13 @@ npm test
 
 ### What could be improved?
 
-1. [ ] Ability to add more translation sources and strrategies
+1. [ ] Ability to add more translation sources and multiple strategies
 2. [ ] Ability to read from multiple data-sources, like CSV file, API endpoint etc
 3. [ ] Ability to write to multiple destinations like console or a OUT.FILE or as streamed observable dataBuffer
 4. [ ] collect performance data and metrics
 5. [ ] look out for security vurnabilities and package and publish it
+6. [x] CSV generator from exiting data [22df7](https://github.com/avimehenwal/ts-translate/commit/22df712e925b4deae328a336e792ee52d48a9ba6)
+7. [ ] debugging features and low-level code-introspection
 
 ### @ Reach Me @
 

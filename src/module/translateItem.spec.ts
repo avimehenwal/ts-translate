@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { items } from '../data';
+import { items } from '../data/sampleData';
 import { translateItem } from './translateItem';
 
 describe('Test::translateItem', () => {

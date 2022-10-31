@@ -3,3 +3,4 @@ dist
 .env
 src/keyFile.json
 coverage
+src/data/data.csv

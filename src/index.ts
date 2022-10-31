@@ -1,4 +1,4 @@
-import { items } from './data';
+import { items } from './data/sampleData';
 import translateItem from './module';
 import { IErrorFormat, IItemResult } from './types';
 

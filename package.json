@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "csv": "npx ts-node-dev src/module/jsonToCsv.ts",
     "format": "npx prettier --write src/**",
     "lint": "npx eslint src/",
     "start": "npx ts-node-dev src/index.ts",
