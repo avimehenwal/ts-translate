@@ -32,6 +32,14 @@ npm test
 - Once all translation are resolved the data-object could be used to write/update a file or database entry
 - all errors are handeled and a summary of all actions is printed in the end
 
+### What could be improved?
+
+1. [ ] Ability to add more translation sources and strrategies
+2. [ ] Ability to read from multiple data-sources, like CSV file, API endpoint etc
+3. [ ] Ability to write to multiple destinations like console or a OUT.FILE or as streamed observable dataBuffer
+4. [ ] collect performance data and metrics
+5. [ ] look out for security vurnabilities and package and publish it
+
 ### @ Reach Me @
 
 > available for new opportunity ...
