@@ -1,7 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { translateService } from './translate'
-import { items } from '../data'
-import { translateItem } from '..';
+import { translateService } from './translate';
 
 describe('Test::translateService', () => {
 
@@ -26,26 +24,3 @@ describe('Test::translateService', () => {
 });
 
 
-describe('Test::translateItem', () => {
-
-  test('happy path - promise is resolved with value', async () => {
-    const actual = await translateItem(items[1])
-    expect(actual).toMatchObject({
-      title: expect.any(String),
-      description: expect.any(String),
-    });
-  });
-
-  test('failure path - promise is rejected', async () => {
-    try {
-      await translateItem(items[6])
-    } catch (error) {
-      console.dir(error)
-      expect(error).toMatchObject({
-        code: expect.any(Number),
-        msg: expect.any(String),
-        original: expect.any(String),
-      });
-    };
-  });
-});
