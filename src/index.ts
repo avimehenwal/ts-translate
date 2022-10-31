@@ -1,5 +1,5 @@
 import { items } from './data';
-import { translateItem } from './module/translateItem';
+import translateItem from './module';
 import { IErrorFormat, IItemResult } from './types';
 
 async function main() {
